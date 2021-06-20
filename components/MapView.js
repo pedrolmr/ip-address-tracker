@@ -1,37 +1,34 @@
-import React, { useState, useEffect } from "react";
-import { MapContainer, TileLayer, CircleMarker, Tooltip } from "react-leaflet";
+import locationIcon from "../images/icon-location.svg";
+import { Icon } from "leaflet";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
 
-const MapView = ({ city, lat, lng, timezone, ip, isp }) => {
+const MapView = ({ lat, lng }) => {
   return (
     <>
-      <div id="mapid">
+      <div id="mapid" className="-mt-1.5 -z-10 overflow-hidden">
         <MapContainer
+          className="h-screen overflow-hidden"
           id="mapid"
           center={[lat, lng]}
           zoom={13}
-          scrollWheelZoom={false}
+          scrollWheelZoom={true}
         >
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
 
-          <CircleMarker
-            center={[lat, lng]}
-            pathOptions={{ color: "red" }}
-            radius={20}
-          >
-            <Tooltip>
-              <ul>
-                <li>latitude: {lat}</li>
-                <li>longitude: {lng}</li>
-                <li>IP: {ip}</li>
-                <li>City: {city}</li>
-                <li>Time zone: {timezone}</li>
-                <li>ISP: {isp}</li>
-              </ul>
-            </Tooltip>
-          </CircleMarker>
+          <Marker
+            position={[lat, lng]}
+            icon={
+              new Icon({
+                iconUrl: locationIcon,
+                iconAnchor: [12, 41],
+              })
+            }
+            draggable={true}
+            animate={true}
+          ></Marker>
         </MapContainer>
       </div>
     </>

@@ -1,5 +1,8 @@
 import "../styles/globals.css";
 import "leaflet/dist/leaflet.css";
+import "tailwindcss/tailwind.css";
+import "../styles/globals.css";
+
 import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {
